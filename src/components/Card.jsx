@@ -8,13 +8,13 @@ const Card = props => (
       backgroundImage: `url(${props.item.video.thumb})`
     }}
     className="card">
-    <span onClick={() => props.render(props.item)}>&#9654;</span>
+    <span onClick={() => props.play(props.item)}>&#9654;</span>
   </div>
 )
 
 Card.propTypes = {
   item: PropTypes.object.isRequired,
-  render: PropTypes.func.isRequired
+  play: PropTypes.func.isRequired
 }
 
 export default Card

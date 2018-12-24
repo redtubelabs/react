@@ -19,7 +19,7 @@ class Wrapper extends Component {
     const { data } = await HTTPClient.get('/', { params })
 
     this.setState(() => ({
-      listVideosMode: true,
+      listVideosMode: false,
       isLoading: false,
       videos: data.videos
     }))
