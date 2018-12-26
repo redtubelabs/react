@@ -11,7 +11,7 @@ const Modal = props => (
           className="container-fr--close">X</span>
         <iframe
           title="Video"
-          className="container-fr-iframe"
+          className="container-fr--iframe"
           src={props.video.embed_url}
           frameBorder="0"></iframe>
       </div>

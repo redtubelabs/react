@@ -12,39 +12,40 @@ class App extends Component {
     isModalVisible: false
   }
 
-  render() {
+  closeModal = () => {
+    this.setState({ currentVideo: null, isModalVisible: false })
+  }
+  setCurrentVideo = ({ video }) => {
+    this.setState({ currentVideo: video, isModalVisible: true })
+  }
+
+  render () {
     return (
-      <Wrapper
-        render={videos => (
-          <ReactCSSTransitionGroup
-            transitionName="list"
-            transitionEnterTimeout={400}
-            transitionLeaveTimeout={0}
-            className="list-container">
-            {
-              this.state.isModalVisible
-                ? (
-                  <Modal
-                    close={() =>
-                      this.setState({ currentVideo: null, isModalVisible: false })
-                    }
-                    video={this.state.currentVideo} />
-                  )
-                : null
-            }
-            {
-              videos.map((video, index) => (
-                <Card
-                  item={video}
-                  key={index}
-                  play={item =>
-                    this.setState({ currentVideo: item, isModalVisible: true })
-                  } />
-              ))
-            }
-          </ReactCSSTransitionGroup>
-        )}
-      />
+      <main style={{ width: '100%', height: '100%' }}>
+        {
+          this.state.isModalVisible 
+            ? <Modal close={this.closeModal} video={this.state.currentVideo} />
+            : null
+        }
+        <Wrapper
+          render={videos => (
+            <ReactCSSTransitionGroup
+              transitionName="list"
+              transitionEnterTimeout={400}
+              transitionLeaveTimeout={0}
+              className="list-container">
+              {
+                videos.map((video, index) => (
+                  <Card
+                    item={video}
+                    key={index}
+                    play={this.setCurrentVideo} />
+                ))
+              }
+            </ReactCSSTransitionGroup>
+          )}
+        />
+      </main>
     )
   }
 }
